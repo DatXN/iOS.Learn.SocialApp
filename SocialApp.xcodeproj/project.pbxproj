@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A4383EC8372BF643FB06F7BB /* Pods_SocialApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48492BE4BADE95B41B24AB9B /* Pods_SocialApp.framework */; };
 		AADB79E21E56AAC80032A8E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADB79E11E56AAC80032A8E6 /* AppDelegate.swift */; };
-		AADB79E41E56AAC80032A8E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADB79E31E56AAC80032A8E6 /* ViewController.swift */; };
+		AADB79E41E56AAC80032A8E6 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADB79E31E56AAC80032A8E6 /* MainVC.swift */; };
 		AADB79E71E56AAC80032A8E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AADB79E51E56AAC80032A8E6 /* Main.storyboard */; };
 		AADB79E91E56AAC80032A8E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AADB79E81E56AAC80032A8E6 /* Assets.xcassets */; };
 		AADB79EC1E56AAC80032A8E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AADB79EA1E56AAC80032A8E6 /* LaunchScreen.storyboard */; };
@@ -21,7 +21,7 @@
 		855D80AE1EF3098BD2F8B96C /* Pods-SocialApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialApp/Pods-SocialApp.release.xcconfig"; sourceTree = "<group>"; };
 		AADB79DE1E56AAC80032A8E6 /* SocialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADB79E11E56AAC80032A8E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AADB79E31E56AAC80032A8E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AADB79E31E56AAC80032A8E6 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		AADB79E61E56AAC80032A8E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AADB79E81E56AAC80032A8E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AADB79EB1E56AAC80032A8E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,15 +72,39 @@
 		AADB79E01E56AAC80032A8E6 /* SocialApp */ = {
 			isa = PBXGroup;
 			children = (
+				AADB79F71E56ADDA0032A8E6 /* Plist */,
+				AADB79F61E56ADBA0032A8E6 /* Storyboard */,
+				AADB79F51E56AD6B0032A8E6 /* Controller */,
 				AADB79E11E56AAC80032A8E6 /* AppDelegate.swift */,
-				AADB79E31E56AAC80032A8E6 /* ViewController.swift */,
-				AADB79E51E56AAC80032A8E6 /* Main.storyboard */,
 				AADB79E81E56AAC80032A8E6 /* Assets.xcassets */,
+			);
+			path = SocialApp;
+			sourceTree = "<group>";
+		};
+		AADB79F51E56AD6B0032A8E6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AADB79E31E56AAC80032A8E6 /* MainVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		AADB79F61E56ADBA0032A8E6 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				AADB79E51E56AAC80032A8E6 /* Main.storyboard */,
 				AADB79EA1E56AAC80032A8E6 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		AADB79F71E56ADDA0032A8E6 /* Plist */ = {
+			isa = PBXGroup;
+			children = (
 				AADB79ED1E56AAC80032A8E6 /* Info.plist */,
 				AADB79F31E56AB200032A8E6 /* GoogleService-Info.plist */,
 			);
-			path = SocialApp;
+			name = Plist;
 			sourceTree = "<group>";
 		};
 		EE2DD8CC23628E0BC0271412 /* Frameworks */ = {
@@ -216,7 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AADB79E41E56AAC80032A8E6 /* ViewController.swift in Sources */,
+				AADB79E41E56AAC80032A8E6 /* MainVC.swift in Sources */,
 				AADB79E21E56AAC80032A8E6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +409,7 @@
 				AADB79F21E56AAC80032A8E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

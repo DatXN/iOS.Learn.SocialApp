@@ -1,5 +1,6 @@
 //
-//  ViewController.swift
+//  
+
 //  SocialApp
 //
 //  Created by Nguyễn Xuân Đạt on 2/17/17.
@@ -8,7 +9,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
