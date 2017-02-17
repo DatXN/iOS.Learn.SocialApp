@@ -55,11 +55,12 @@ class SignInVC: UIViewController {
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
 
             if error != nil {
-                print("FUCK: Unable to authenticate with Firebase - \(String(describing: error))")
+                print("FUCK: Unable to authenticate with Facebook via Firebase - \(String(describing: error))")
 
             } else {
-                print("JESS: Successfully authenticated with Firebase")
-                self.completeSignIn(id: (user?.uid)!)
+                print("JESS: Successfully authenticated with Facebook via Firebase")
+                let userData = ["provider": credential.provider]
+                self.completeSignIn(id: (user?.uid)!, userData: userData)
             }
 
         })
@@ -70,7 +71,8 @@ class SignInVC: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { (user, error) in
                 if (error == nil) {
                     print("JESS: Email user authenticated with Firebase")
-                    self.completeSignIn(id: (user?.uid)!)
+                    let userData = ["provider": (user?.providerID)!]
+                    self.completeSignIn(id: (user?.uid)!, userData: userData)
 
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
@@ -79,8 +81,8 @@ class SignInVC: UIViewController {
 
                         } else {
                             print("JESS: Successfully created user & authenticate with Firebase")
-                            self.completeSignIn(id: (user?.uid)!)
-
+                            let userData = ["provider": (user?.providerID)!]
+                            self.completeSignIn(id: (user?.uid)!, userData: userData)
                         }
 
                     })
@@ -91,7 +93,8 @@ class SignInVC: UIViewController {
 
     }
 
-    func completeSignIn(id: String) {
+    func completeSignIn(id: String, userData: Dictionary<String, String>) {
+        DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("OK: Data saved to keychain \(keychainResult)")
         loggedIn()

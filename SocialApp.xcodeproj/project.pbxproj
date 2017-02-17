@@ -10,6 +10,9 @@
 		A4383EC8372BF643FB06F7BB /* Pods_SocialApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48492BE4BADE95B41B24AB9B /* Pods_SocialApp.framework */; };
 		AA7A1E431E5704A0008450D9 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A1E421E5704A0008450D9 /* FeedVC.swift */; };
 		AA7A1E451E572987008450D9 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A1E441E572987008450D9 /* CircleImageView.swift */; };
+		AA7A1E481E5736C8008450D9 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A1E471E5736C8008450D9 /* DataService.swift */; };
+		AA7A1E4A1E574628008450D9 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A1E491E574628008450D9 /* PostCell.swift */; };
+		AA7A1E4D1E574C0F008450D9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A1E4C1E574C0F008450D9 /* Post.swift */; };
 		AADB79E21E56AAC80032A8E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADB79E11E56AAC80032A8E6 /* AppDelegate.swift */; };
 		AADB79E41E56AAC80032A8E6 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADB79E31E56AAC80032A8E6 /* SignInVC.swift */; };
 		AADB79E71E56AAC80032A8E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AADB79E51E56AAC80032A8E6 /* Main.storyboard */; };
@@ -28,6 +31,9 @@
 		855D80AE1EF3098BD2F8B96C /* Pods-SocialApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialApp/Pods-SocialApp.release.xcconfig"; sourceTree = "<group>"; };
 		AA7A1E421E5704A0008450D9 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedVC.swift; path = Controller/FeedVC.swift; sourceTree = "<group>"; };
 		AA7A1E441E572987008450D9 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleImageView.swift; path = View/CircleImageView.swift; sourceTree = "<group>"; };
+		AA7A1E471E5736C8008450D9 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataService.swift; path = Service/DataService.swift; sourceTree = "<group>"; };
+		AA7A1E491E574628008450D9 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = View/PostCell.swift; sourceTree = "<group>"; };
+		AA7A1E4C1E574C0F008450D9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = Model/Post.swift; sourceTree = "<group>"; };
 		AADB79DE1E56AAC80032A8E6 /* SocialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADB79E11E56AAC80032A8E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AADB79E31E56AAC80032A8E6 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -65,6 +71,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AA7A1E461E57369C008450D9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				AA7A1E471E5736C8008450D9 /* DataService.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		AA7A1E4B1E574BF5008450D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA7A1E4C1E574C0F008450D9 /* Post.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		AADB79D51E56AAC80032A8E6 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +108,8 @@
 		AADB79E01E56AAC80032A8E6 /* SocialApp */ = {
 			isa = PBXGroup;
 			children = (
+				AA7A1E4B1E574BF5008450D9 /* Model */,
+				AA7A1E461E57369C008450D9 /* Service */,
 				AADB79FB1E56E1D70032A8E6 /* Common */,
 				AADB79F81E56E19B0032A8E6 /* View */,
 				AADB79F71E56ADDA0032A8E6 /* Plist */,
@@ -132,6 +156,7 @@
 				AADB7A001E56E3E90032A8E6 /* FancyField.swift */,
 				AADB7A021E56E4CB0032A8E6 /* FancyButton.swift */,
 				AA7A1E441E572987008450D9 /* CircleImageView.swift */,
+				AA7A1E491E574628008450D9 /* PostCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -280,12 +305,15 @@
 				AADB7A011E56E3E90032A8E6 /* FancyField.swift in Sources */,
 				AA7A1E451E572987008450D9 /* CircleImageView.swift in Sources */,
 				AADB79E41E56AAC80032A8E6 /* SignInVC.swift in Sources */,
+				AA7A1E4D1E574C0F008450D9 /* Post.swift in Sources */,
 				AADB79FF1E56E2F20032A8E6 /* RoundButton.swift in Sources */,
 				AADB7A031E56E4CB0032A8E6 /* FancyButton.swift in Sources */,
 				AA7A1E431E5704A0008450D9 /* FeedVC.swift in Sources */,
 				AADB79FD1E56E1EA0032A8E6 /* Constants.swift in Sources */,
 				AADB79E21E56AAC80032A8E6 /* AppDelegate.swift in Sources */,
+				AA7A1E4A1E574628008450D9 /* PostCell.swift in Sources */,
 				AADB79FA1E56E1B90032A8E6 /* FancyView.swift in Sources */,
+				AA7A1E481E5736C8008450D9 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
