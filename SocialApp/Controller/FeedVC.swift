@@ -13,11 +13,14 @@ import SwiftKeychainWrapper
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-
     @IBOutlet weak var imageAdd: CircleImageView!
+    @IBOutlet weak var captionField: FancyField!
+    //
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+
+    var imageSelected = false // To recognize that an image is selected instead of default image
 
 
     override func viewDidLoad() {
@@ -31,6 +34,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
 
         //
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            self.posts.removeAll()
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     print("SNAP: \(snap)")
@@ -84,9 +88,60 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             imageAdd.image = image
+            imageSelected = true
         } else {
             print("JESS: A valid image wasn't selected")
         }
         imagePicker.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func btnPosting_OnPressed(_ sender: Any) {
+        guard let caption = captionField.text, caption != "" else {
+            // run if the guard fail
+            print("Caption must be entered")
+            return
+        }
+
+        guard let img = imageAdd.image, imageSelected == true else {
+            // run if the guard fail
+            print("An image must be selected")
+            return
+        }
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            let imgUid = NSUUID().uuidString
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpeg"
+            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
+                if error != nil {
+                    print("Unable to upload image to Firebase storage")
+
+                } else {
+                    print("Successfully upload image to Firebase storage")
+                    let downloadUrl = metaData?.downloadURL()?.absoluteString
+                    if let url = downloadUrl {
+                        self.createPostOnFirebase(imgUrl: url)
+                    }
+                }
+
+            }
+
+        }
+    }
+
+    func createPostOnFirebase(imgUrl: String) {
+        let post: Dictionary<String, AnyObject> = [
+            "caption": captionField.text as AnyObject,
+            "imageUrl": imgUrl as AnyObject,
+            "likes": 0 as AnyObject
+        ]
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        // clear data
+        captionField.text = ""
+        imageSelected = false
+        imageAdd.image = UIImage(named: "add-image")
+        
+        // 
+        tableView.reloadData()
+
     }
 }
